@@ -1,0 +1,57 @@
+services:
+  orders: 
+    container_name: orders 
+    build:
+      context: .
+      dockerfile: ./apps/orders/Dockerfile
+      target: development
+    command: npm run start:dev orders
+    env_file: 
+      - ./apps/orders/.env
+    depends_on:
+      - mongodb-primary
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      # - /usr/src/app/node_modules
+
+
+  billing: 
+    container_name: billing 
+    build:
+      context: .
+      dockerfile: ./apps/billing/Dockerfile
+      target: development
+    command: npm run start:dev billing
+    env_file: 
+      - ./apps/billing/.env
+    depends_on:
+      - mongodb-primary
+    volumes:
+      - .:/usr/src/app
+      # - /usr/src/app/node_modules
+      
+  rabbitmq:
+    container_name: rabbitmq 
+    image: rabbitmq
+    ports:
+      - '5672:5672'
+  mongodb-primary:
+    image: docker.io/bitnami/mongodb:5.0
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-primary
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_ROOT_PASSWORD=password123
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+  
+    ports:
+      - '27017:27017'
+
+ 
+volumes:
+  mongodb_master_data:
+    driver: local
+
+
+
