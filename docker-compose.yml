@@ -1,4 +1,5 @@
 services:
+
   orders: 
     container_name: orders 
     build:
@@ -12,6 +13,24 @@ services:
       - mongodb-primary
     ports:
       - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      # - /usr/src/app/node_modules
+
+
+  foods: 
+    container_name: foods 
+    build:
+      context: .
+      dockerfile: ./apps/foods/Dockerfile
+      target: development
+    command: npm run start:dev foods
+    env_file: 
+      - ./apps/foods/.env
+    depends_on:
+      - mongodb-primary
+    ports:
+      - 3001:3001
     volumes:
       - .:/usr/src/app
       # - /usr/src/app/node_modules

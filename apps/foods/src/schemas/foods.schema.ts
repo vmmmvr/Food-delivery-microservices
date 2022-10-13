@@ -2,7 +2,7 @@ import { AbstractDocument } from "@app/common";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema({versionKey: false})
-export class Product extends AbstractDocument {
+export class Food extends AbstractDocument {
      
     @Prop()
     name: string;
@@ -13,4 +13,4 @@ export class Product extends AbstractDocument {
 
 }
 
-export const ProductSchema = SchemaFactory.createForClass(Product);
+export const FoodSchema = SchemaFactory.createForClass(Food);

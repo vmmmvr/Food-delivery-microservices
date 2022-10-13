@@ -36,15 +36,6 @@
         "tsConfigPath": "apps/billing/tsconfig.app.json"
       }
     },
-    "products": {
-      "type": "application",
-      "root": "apps/products",
-      "entryFile": "main",
-      "sourceRoot": "apps/products/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/products/tsconfig.app.json"
-      }
-    },
     "common": {
       "type": "library",
       "root": "libs/common",
@@ -52,6 +43,15 @@
       "sourceRoot": "libs/common/src",
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "foods": {
+      "type": "application",
+      "root": "apps/foods",
+      "entryFile": "main",
+      "sourceRoot": "apps/foods/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/foods/tsconfig.app.json"
       }
     }
   }
